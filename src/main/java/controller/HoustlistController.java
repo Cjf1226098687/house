@@ -20,16 +20,16 @@ public class HoustlistController {
 	@RequestMapping("/houselist")
 	public String houselist(Model model ,@RequestParam(required=false,defaultValue="1") Integer page,
             @RequestParam(required=false,defaultValue="2") Integer pageSize){
-		
-		 PageHelper.startPage(page, pageSize);
-		List<Houselist> houselist=houselistService.selectAll();
-	PageInfo<Houselist> p=new PageInfo<Houselist>(houselist);
-		
-				
+
+		PageHelper.startPage(page, pageSize);
+		List<Houselist> houselist = houselistService.selectAll();
+		PageInfo<Houselist> p = new PageInfo<Houselist>(houselist);
+
+
 		model.addAttribute("p", p);
-		model.addAttribute("houselist",houselist);
-		model.addAttribute("mainPage","houselist.jsp");
-		return "zuke/main";
+		model.addAttribute("houselist", houselist);
+		model.addAttribute("mainPage", "houselist.jsp");
+		return "tenant/main";
 	}
 	@RequestMapping("/ahouselist")
 	public String ahouselist(Model model ,@RequestParam(required=false,defaultValue="1") Integer page,

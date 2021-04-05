@@ -100,15 +100,15 @@ public class ApplyController {
 	@RequestMapping("/getmyapply")
 	public String getmyapply(Model model,HttpSession httpSession,@RequestParam(required=false,defaultValue="1") Integer page,
             @RequestParam(required=false,defaultValue="2") Integer pageSize){
-		User user1= (User) httpSession.getAttribute("user");
-		Userlist userlist=userlistService.findhasuserlist(user1.getId());
+		User user1 = (User) httpSession.getAttribute("user");
+		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		PageHelper.startPage(page, pageSize);
-		List<Userlist> list=userlistService.getmyapply(userlist.getId());
-		PageInfo<Userlist> p=new PageInfo<Userlist>(list);
+		List<Userlist> list = userlistService.getmyapply(userlist.getId());
+		PageInfo<Userlist> p = new PageInfo<Userlist>(list);
 		model.addAttribute("userlist", list);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "myapply.jsp");
-		return "zuke/main";
+		return "tenant/main";
 	}
 	
 	

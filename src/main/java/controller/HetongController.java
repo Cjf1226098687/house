@@ -103,6 +103,6 @@ public class HetongController {
         Hetong hetong = hetongService.findhetong(house_id);
         model.addAttribute("hetong", hetong);
         model.addAttribute("mainPage", "showhetong.jsp");
-        return "zuke/main";
+        return "tenant/main";
     }
 }

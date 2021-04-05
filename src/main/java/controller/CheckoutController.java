@@ -55,14 +55,14 @@ public class CheckoutController {
 	@RequestMapping("/getmycheckout")
 	public String getmycheckout(Model model,HttpSession httpSession,@RequestParam(required=false,defaultValue="1") Integer page,
             @RequestParam(required=false,defaultValue="2") Integer pageSize) {
-		User user1= (User) httpSession.getAttribute("user");
-		Userlist userlist=userlistService.findhasuserlist(user1.getId());
-		PageHelper.startPage(page, pageSize);
-		List<Userlist> list=userlistService.getmycheckout(userlist.getId());
-		PageInfo<Userlist> p=new PageInfo<Userlist>(list);
-		model.addAttribute("p", p);
-		model.addAttribute("userlistcheck", list);
-		model.addAttribute("mainPage","mycheckout.jsp");
-		return "zuke/main";
-	}
+        User user1 = (User) httpSession.getAttribute("user");
+        Userlist userlist = userlistService.findhasuserlist(user1.getId());
+        PageHelper.startPage(page, pageSize);
+        List<Userlist> list = userlistService.getmycheckout(userlist.getId());
+        PageInfo<Userlist> p = new PageInfo<Userlist>(list);
+        model.addAttribute("p", p);
+        model.addAttribute("userlistcheck", list);
+        model.addAttribute("mainPage", "mycheckout.jsp");
+        return "tenant/main";
+    }
 }

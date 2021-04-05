@@ -63,7 +63,7 @@ public class ZulistController {
         model.addAttribute("p", p);
         model.addAttribute("mainPage", "myzulist.jsp");
 
-        return "zuke/main";
+        return "tenant/main";
     }
 
 }

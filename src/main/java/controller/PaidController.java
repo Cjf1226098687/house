@@ -56,18 +56,18 @@ public class PaidController {
 	            @RequestParam(required=false,defaultValue="2") Integer pageSize){
 			User user1= (User) httpSession.getAttribute("user");
 			Userlist userlist=userlistService.findhasuserlist(user1.getId());
-			
+
 			vo.setUserlist_id(userlist.getId());
 			PageHelper.startPage(page, pageSize);
-			List<Paid> list=paidService.selectall(vo);
-			PageInfo<Paid> p=new PageInfo<Paid>(list);
-			Double sum=paidService.selectsum(vo);
+			List<Paid> list = paidService.selectall(vo);
+			PageInfo<Paid> p = new PageInfo<Paid>(list);
+			Double sum = paidService.selectsum(vo);
 			model.addAttribute("paid", list);
 			model.addAttribute("sum", sum);
 			model.addAttribute("p", p);
 			model.addAttribute("mainPage", "mypaid.jsp");
 			model.addAttribute("vo", vo);
-			return "zuke/main";
+			return "tenant/main";
 		}
 	//管理员删除已缴租金记录
 	@RequestMapping("/deletepaid")
@@ -126,17 +126,17 @@ public class PaidController {
 		@RequestMapping("/mytopaidlist")
 		public String mytopaidlist(Model model,HttpSession httpSession,@RequestParam(required=false,defaultValue="1") Integer page,
 	            @RequestParam(required=false,defaultValue="2") Integer pageSize){
-			User user1= (User) httpSession.getAttribute("user");
-			Userlist userlist=userlistService.findhasuserlist(user1.getId());
-			QueryVo vo=new QueryVo();
+			User user1 = (User) httpSession.getAttribute("user");
+			Userlist userlist = userlistService.findhasuserlist(user1.getId());
+			QueryVo vo = new QueryVo();
 			vo.setUserlist_id(userlist.getId());
 			PageHelper.startPage(page, pageSize);
-			List<Topaid> topaid=topaidService.findtopaid(vo);
-			PageInfo<Topaid> p=new PageInfo<Topaid>(topaid);
+			List<Topaid> topaid = topaidService.findtopaid(vo);
+			PageInfo<Topaid> p = new PageInfo<Topaid>(topaid);
 			model.addAttribute("p", p);
-			model.addAttribute("topaid",topaid);
+			model.addAttribute("topaid", topaid);
 			model.addAttribute("mainPage", "mytopaid.jsp");
-			return "zuke/main";
+			return "tenant/main";
 		}
 		//租客进行支付操作
 		@RequestMapping("/gotopay")

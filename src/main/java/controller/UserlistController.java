@@ -30,7 +30,7 @@ public class UserlistController {
         Userlist userlist = userlistService.findhasuserlist(user_id);
         model.addAttribute("userlist", userlist);
         model.addAttribute("mainPage", "updateuserlist.jsp");
-        return "zuke/main";
+        return "tenant/main";
 
     }
 
@@ -72,7 +72,7 @@ public class UserlistController {
             }
 
         }
-        return "zuke/main";
+        return "tenant/main";
     }
 
     @RequestMapping("findAllUserList")

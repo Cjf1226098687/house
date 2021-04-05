@@ -55,19 +55,19 @@ public class WrongController {
 	            @RequestParam(required=false,defaultValue="2") Integer pageSize){
 			User user1= (User) httpSession.getAttribute("user");
 			Userlist userlist=userlistService.findhasuserlist(user1.getId());
-			
-			vo.setUserlist_id(userlist.getId());
-			PageHelper.startPage(page, pageSize);
-			List<Solve> list=solveService.selectall(vo);
-			PageInfo<Solve> p=new PageInfo<Solve>(list);
-			Integer count=solveService.selectcount(vo);
-			model.addAttribute("solve", list);
-			model.addAttribute("count", count);
-			model.addAttribute("p", p);
-			model.addAttribute("mainPage", "mysolve.jsp");
-			model.addAttribute("vo", vo);
-			return "zuke/main";
-		}
+
+            vo.setUserlist_id(userlist.getId());
+            PageHelper.startPage(page, pageSize);
+            List<Solve> list = solveService.selectall(vo);
+            PageInfo<Solve> p = new PageInfo<Solve>(list);
+            Integer count = solveService.selectcount(vo);
+            model.addAttribute("solve", list);
+            model.addAttribute("count", count);
+            model.addAttribute("p", p);
+            model.addAttribute("mainPage", "mysolve.jsp");
+            model.addAttribute("vo", vo);
+            return "tenant/main";
+        }
 		//管理员删除已处理报障记录
 		@RequestMapping("/deletesolve")
 		public String deletesolve(Integer id){
@@ -83,25 +83,25 @@ public class WrongController {
 			//租客跳到我要报障页面
 			@RequestMapping("/showaddwrong")
 			public String showaddwrong(HttpSession httpSession,Model model,@RequestParam(required=false,defaultValue="1") Integer page,
-		            @RequestParam(required=false,defaultValue="2") Integer pageSize)throws Exception{
-				User user1= (User) httpSession.getAttribute("user");
-				Userlist userlist=userlistService.findhasuserlist(user1.getId());
-				PageHelper.startPage(page, pageSize);
-				List<Zulist> list=zulistService.findzulistbyuid(userlist.getId());
-				PageInfo<Zulist> p=new PageInfo<Zulist>(list);
-				model.addAttribute("zulist", list);
-				model.addAttribute("p", p);
-				model.addAttribute("mainPage", "showaddwrong.jsp");
-				return "zuke/main";
-			}
+		            @RequestParam(required=false,defaultValue="2") Integer pageSize)throws Exception {
+                User user1 = (User) httpSession.getAttribute("user");
+                Userlist userlist = userlistService.findhasuserlist(user1.getId());
+                PageHelper.startPage(page, pageSize);
+                List<Zulist> list = zulistService.findzulistbyuid(userlist.getId());
+                PageInfo<Zulist> p = new PageInfo<Zulist>(list);
+                model.addAttribute("zulist", list);
+                model.addAttribute("p", p);
+                model.addAttribute("mainPage", "showaddwrong.jsp");
+                return "tenant/main";
+            }
 			//点击报障后跳转到添加报障信息页面
 			@RequestMapping("/addwrong")
-			public String addwrong(Integer id,Model model){
-				Zulist zulist=paidService.findzukezulist(id);
-				model.addAttribute("zulist", zulist);
-				model.addAttribute("mainPage", "addwrong.jsp");
-				return "zuke/main";
-			}
+			public String addwrong(Integer id,Model model) {
+                Zulist zulist = paidService.findzukezulist(id);
+                model.addAttribute("zulist", zulist);
+                model.addAttribute("mainPage", "addwrong.jsp");
+                return "tenant/main";
+            }
 			//添加报障信息到wrong表
 			@RequestMapping("/insertwrong")
 			public String insertwrong(Wrong wrong,Model model){
@@ -127,18 +127,18 @@ public class WrongController {
 			@RequestMapping("/mywronglist")
 			public String mywronglist(Model model,HttpSession httpSession,@RequestParam(required=false,defaultValue="1") Integer page,
 		            @RequestParam(required=false,defaultValue="2") Integer pageSize){
-				User user1= (User) httpSession.getAttribute("user");
-				Userlist userlist=userlistService.findhasuserlist(user1.getId());
-				QueryVo vo=new QueryVo();
-				vo.setUserlist_id(userlist.getId());
-				PageHelper.startPage(page, pageSize);
-				List<Wrong> list=solveService.findwrong(vo);
-				PageInfo<Wrong> p=new PageInfo<Wrong>(list);
-				model.addAttribute("p", p);
-				model.addAttribute("wrong",list);
-				model.addAttribute("mainPage", "mywrong.jsp");
-				return "zuke/main";
-			}
+                User user1 = (User) httpSession.getAttribute("user");
+                Userlist userlist = userlistService.findhasuserlist(user1.getId());
+                QueryVo vo = new QueryVo();
+                vo.setUserlist_id(userlist.getId());
+                PageHelper.startPage(page, pageSize);
+                List<Wrong> list = solveService.findwrong(vo);
+                PageInfo<Wrong> p = new PageInfo<Wrong>(list);
+                model.addAttribute("p", p);
+                model.addAttribute("wrong", list);
+                model.addAttribute("mainPage", "mywrong.jsp");
+                return "tenant/main";
+            }
 			//管理员处理报障
 			@RequestMapping("/gotosolve")
 			public String gotosolve(Integer id,Model model){

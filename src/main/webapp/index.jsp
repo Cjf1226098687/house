@@ -89,8 +89,6 @@
     if (error === "error") {
         alert("帐户名或密码错误");
     }
-
-
 </script>
 </body>
 </html>

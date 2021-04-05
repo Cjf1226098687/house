@@ -35,7 +35,7 @@ public class UserController {
         if (user1 != null) {
             httpSession.setAttribute("user", user1);
             if (user1.getType().equals("tenant")) {
-                return "zuke/main";
+                return "tenant/main";
             } else {
                 return "admin/main1";
             }
