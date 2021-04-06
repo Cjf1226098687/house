@@ -40,6 +40,7 @@ public class UserController {
                 return "admin/main1";
             }
         } else {
+
             String error = "error";
             model.addAttribute("error", error);
             return "login";
